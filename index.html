@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ROCÈA Herbal Tea - Minuman herbal segar berbahan dasar rosella. A Little Sip of Nature.">
+    <meta name="theme-color" content="#b5565e">
+    <title>ROCÈA Herbal Tea — A Little Sip of Nature</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="icon" type="image/png" href="./assets/logo.png">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="container header-inner">
+            <a href="#beranda" class="brand" data-nav="beranda">
+                <div class="brand-logo">
+                    <img src="./assets/logo.png" alt="Logo ROCÈA Herbal Tea" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <span class="brand-fallback" style="display:none;">R</span>
+                </div>
+                <div class="brand-text">
+                    <span class="brand-name">ROCÈA</span>
+                    <span class="brand-sub">HERBAL TEA</span>
+                </div>
+            </a>
+
+            <nav class="nav-desktop" aria-label="Navigasi utama">
+                <button class="nav-link active" data-nav="beranda">Beranda</button>
+                <button class="nav-link" data-nav="produk">Produk</button>
+                <button class="nav-link" data-nav="keranjang">
+                    Keranjang <span class="badge" id="cartBadge">0</span>
+                </button>
+                <button class="nav-link" data-nav="pesanan">Pesanan</button>
+                <button class="nav-link" data-nav="profil">Profil</button>
+            </nav>
+
+            <button class="menu-toggle" id="menuToggle" aria-label="Buka menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+
+        <nav class="nav-mobile" id="navMobile" aria-label="Navigasi mobile">
+            <button class="nav-link active" data-nav="beranda">Beranda</button>
+            <button class="nav-link" data-nav="produk">Produk</button>
+            <button class="nav-link" data-nav="keranjang">
+                Keranjang <span class="badge" id="cartBadgeMobile">0</span>
+            </button>
+            <button class="nav-link" data-nav="pesanan">Pesanan</button>
+            <button class="nav-link" data-nav="profil">Profil</button>
+        </nav>
+    </header>
+
+    <main id="app">
+        <!-- ================= BERANDA ================= -->
+        <section class="page active" id="page-beranda">
+            <!-- HERO -->
+            <div class="hero">
+                <div class="hero-deco hero-deco-1"></div>
+                <div class="hero-deco hero-deco-2"></div>
+                <div class="container hero-inner">
+                    <div class="hero-text">
+                        <span class="pill">🌺 Herbal · Fresh · Natural</span>
+                        <h1>ROCÈA Herbal Tea</h1>
+                        <p class="tagline">A Little Sip of Nature</p>
+                        <p class="hero-desc">Minuman herbal segar berbahan dasar rosella untuk menemani hari kamu.</p>
+                        <div class="hero-actions">
+                            <button class="btn btn-primary" data-nav="produk">Belanja Sekarang</button>
+                            <button class="btn btn-ghost" data-nav="profil">Tentang Kami</button>
+                        </div>
+                        <div class="hero-stats">
+                            <div><strong>2</strong><span>Varian Rasa</span></div>
+                            <div><strong>100%</strong><span>Bahan Alami</span></div>
+                            <div><strong>Fresh</strong><span>Setiap Hari</span></div>
+                        </div>
+                    </div>
+                    <div class="hero-visual">
+                        <img src="./assets/rosella-flower.jpg" alt="Bunga rosella segar" onerror="this.src='./assets/rocea-original.png'; this.onerror=null;">
+                        <div class="hero-visual-badge">🌿 Rosella Asli</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- KENAPA ROSELLA -->
+            <div class="section">
+                <div class="container">
+                    <div class="section-head">
+                        <span class="pill soft">🌿 Kebaikan Alam</span>
+                        <h2>Kenapa Rosella?</h2>
+                    </div>
+                    <div class="info-card">
+                        <p>Rosella mengandung senyawa antioksidan seperti antosianin dan dapat diolah menjadi minuman dengan rasa yang segar.</p>
+                        <p class="note">Catatan: Informasi ini bersifat umum dan bukan pengganti saran medis.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PRODUK HOMEPAGE -->
+            <div class="section section-alt">
+                <div class="container">
+                    <div class="section-head">
+                        <span class="pill soft">🍹 Menu Kami</span>
+                        <h2>Pilihan Segar ROCÈA</h2>
+                        <p class="section-sub">Dipilih dari bahan alami terbaik untuk menemani harimu.</p>
+                    </div>
+
+                    <div class="search-wrap">
+                        <span class="search-icon">🔍</span>
+                        <input type="search" id="searchInput" class="search-input" placeholder="Cari produk ROCÈA..." aria-label="Cari produk">
+                    </div>
+
+                    <div class="product-grid" id="productGrid"></div>
+                    <div class="empty-state" id="searchEmpty" style="display:none;">
+                        <div class="empty-icon">🔎</div>
+                        <h3>Produk tidak ditemukan.</h3>
+                        <p>Coba kata kunci lain atau lihat semua produk.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- KEUNGGULAN -->
+            <div class="section">
+                <div class="container">
+                    <div class="section-head">
+                        <span class="pill soft">✨ Kenapa ROCÈA</span>
+                        <h2>Dibuat dengan Cinta</h2>
+                    </div>
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">🌺</div>
+                            <h4>Bahan Alami</h4>
+                            <p>Berbahan dasar bunga rosella pilihan yang segar dan berkualitas.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">❄️</div>
+                            <h4>Selalu Dingin</h4>
+                            <p>Disajikan dingin dengan es untuk sensasi menyegarkan.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">💗</div>
+                            <h4>Dibuat Fresh</h4>
+                            <p>Dibuat dengan penuh perhatian untuk rasa yang konsisten.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ -->
+            <div class="section section-alt">
+                <div class="container">
+                    <div class="section-head">
+                        <span class="pill soft">💬 Bantuan</span>
+                        <h2>Pertanyaan Umum</h2>
+                    </div>
+                    <div class="faq-list" id="faqList"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= PRODUK ================= -->
+        <section class="page" id="page-produk">
+            <div class="section">
+                <div class="container">
+                    <div class="page-head">
+                        <h1>Produk Kami</h1>
+                        <p>Pilih minuman herbal favoritmu.</p>
+                    </div>
+                    <div class="search-wrap">
+                        <span class="search-icon">🔍</span>
+                        <input type="search" id="searchInputPage" class="search-input" placeholder="Cari produk ROCÈA..." aria-label="Cari produk">
+                    </div>
+                    <div class="product-grid" id="productGridPage"></div>
+                    <div class="empty-state" id="searchEmptyPage" style="display:none;">
+                        <div class="empty-icon">🔎</div>
+                        <h3>Produk tidak ditemukan.</h3>
+                        <p>Coba kata kunci lain.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= KERANJANG ================= -->
+        <section class="page" id="page-keranjang">
+            <div class="section">
+                <div class="container">
+                    <div class="page-head">
+                        <h1>Keranjang</h1>
+                        <p>Produk yang kamu pilih.</p>
+                    </div>
+                    <div id="cartContainer"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= CHECKOUT ================= -->
+        <section class="page" id="page-checkout">
+            <div class="section">
+                <div class="container">
+                    <div class="page-head">
+                        <button class="btn-back" data-nav="keranjang">← Kembali ke Keranjang</button>
+                        <h1>Checkout</h1>
+                        <p>Lengkapi data pesananmu.</p>
+                    </div>
+
+                    <div class="checkout-layout">
+                        <div class="checkout-form-wrap">
+                            <h3>Data Pemesan</h3>
+                            <form id="checkoutForm" novalidate>
+                                <div class="form-group">
+                                    <label for="inpNama">Nama Lengkap <span class="req">*</span></label>
+                                    <input type="text" id="inpNama" name="nama" placeholder="Contoh: Siti Aisyah" autocomplete="name">
+                                    <span class="field-error" id="errNama"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="inpWa">Nomor WhatsApp <span class="req">*</span></label>
+                                    <input type="tel" id="inpWa" name="wa" placeholder="Contoh: 08123456789" inputmode="numeric" autocomplete="tel">
+                                    <span class="field-error" id="errWa"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="inpAlamat">Alamat Pengiriman <span class="req">*</span></label>
+                                    <textarea id="inpAlamat" name="alamat" rows="3" placeholder="Tulis alamat lengkap (jalan, nomor, kelurahan, kota)" autocomplete="street-address"></textarea>
+                                    <span class="field-error" id="errAlamat"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Metode Pembayaran <span class="req">*</span></label>
+                                    <div class="payment-options" role="radiogroup" aria-label="Metode pembayaran">
+                                        <label class="payment-option">
+                                            <input type="radio" name="pembayaran" value="Cash">
+                                            <span class="payment-box">
+                                                <span class="payment-emoji">💵</span>
+                                                <span>Cash</span>
+                                            </span>
+                                        </label>
+                                        <label class="payment-option">
+                                            <input type="radio" name="pembayaran" value="Transfer">
+                                            <span class="payment-box">
+                                                <span class="payment-emoji">🏦</span>
+                                                <span>Transfer</span>
+                                            </span>
+                                        </label>
+                                        <label class="payment-option">
+                                            <input type="radio" name="pembayaran" value="QRIS">
+                                            <span class="payment-box">
+                                                <span class="payment-emoji">📱</span>
+                                                <span>QRIS</span>
+                                            </span>
+                                        </label>
+                                    </div>
+                                    <span class="field-error" id="errPembayaran"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="inpCatatan">Catatan <span class="opt">(opsional)</span></label>
+                                    <textarea id="inpCatatan" name="catatan" rows="2" placeholder="Contoh: Tanpa es, tambah gula, dll"></textarea>
+                                </div>
+
+                                <div class="form-error-banner" id="formErrorBanner" style="display:none;"></div>
+
+                                <button type="submit" class="btn btn-primary btn-block" id="btnBuatPesanan">
+                                    Buat Pesanan
+                                </button>
+                                <p class="form-hint">Dengan menekan "Buat Pesanan", pesananmu akan diproses dan data dikirim ke admin ROCÈA.</p>
+                            </form>
+                        </div>
+
+                        <div class="checkout-summary-wrap">
+                            <h3>Ringkasan Pesanan</h3>
+                            <div id="checkoutSummary"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= PESANAN BERHASIL ================= -->
+        <section class="page" id="page-sukses">
+            <div class="section">
+                <div class="container container-narrow">
+                    <div class="success-card">
+                        <div class="success-icon">🎉</div>
+                        <h1>Pesanan Berhasil!</h1>
+                        <p class="success-sub">Terima kasih sudah memesan di ROCÈA Herbal Tea.</p>
+
+                        <div class="order-id-box">
+                            <span>ID Pesanan</span>
+                            <strong id="suksesOrderId">—</strong>
+                        </div>
+
+                        <div class="success-details" id="suksesDetails"></div>
+
+                        <div class="success-actions">
+                            <button class="btn btn-primary" data-nav="pesanan">Lihat Pesanan</button>
+                            <button class="btn btn-ghost" data-nav="produk">Kembali Belanja</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= PESANAN SAYA ================= -->
+        <section class="page" id="page-pesanan">
+            <div class="section">
+                <div class="container">
+                    <div class="page-head">
+                        <h1>Pesanan Saya</h1>
+                        <p>Riwayat pesananmu di ROCÈA Herbal Tea.</p>
+                    </div>
+                    <div id="ordersContainer"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= FAVORIT ================= -->
+        <section class="page" id="page-favorit">
+            <div class="section">
+                <div class="container">
+                    <div class="page-head">
+                        <button class="btn-back" data-nav="profil">← Kembali ke Profil</button>
+                        <h1>Favorit Saya</h1>
+                        <p>Produk yang kamu sukai.</p>
+                    </div>
+                    <div class="product-grid" id="favoritGrid"></div>
+                    <div class="empty-state" id="favoritEmpty" style="display:none;">
+                        <div class="empty-icon">💗</div>
+                        <h3>Belum ada produk favorit.</h3>
+                        <p>Tekan ikon hati pada produk untuk menyimpannya.</p>
+                        <button class="btn btn-primary" data-nav="produk">Lihat Produk</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= PROFIL ================= -->
+        <section class="page" id="page-profil">
+            <div class="section">
+                <div class="container container-narrow">
+                    <div class="profile-header">
+                        <div class="profile-logo">
+                            <img src="./assets/logo.png" alt="Logo ROCÈA" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <span class="brand-fallback" style="display:none;">R</span>
+                        </div>
+                        <h1>ROCÈA Herbal Tea</h1>
+                        <p class="tagline">A Little Sip of Nature</p>
+                        <p class="profile-desc">Minuman herbal segar berbahan dasar rosella untuk menemani hari kamu. Dibuat dengan bahan alami pilihan, disajikan dingin, dan penuh cinta.</p>
+                    </div>
+
+                    <div class="profile-menu">
+                        <a class="profile-item" href="https://www.instagram.com/rocea_herbaltea/" target="_blank" rel="noopener">
+                            <span class="profile-item-icon">📸</span>
+                            <span class="profile-item-text">
+                                <strong>Instagram</strong>
+                                <small>@rocea_herbaltea</small>
+                            </span>
+                            <span class="profile-item-arrow">→</span>
+                        </a>
+
+                        <button class="profile-item" id="btnCs">
+                            <span class="profile-item-icon">💬</span>
+                            <span class="profile-item-text">
+                                <strong>Customer Service</strong>
+                                <small>Hubungi kami via WhatsApp</small>
+                            </span>
+                            <span class="profile-item-arrow">→</span>
+                        </button>
+
+                        <button class="profile-item" data-nav="favorit">
+                            <span class="profile-item-icon">💗</span>
+                            <span class="profile-item-text">
+                                <strong>Favorit Saya</strong>
+                                <small>Produk yang kamu sukai</small>
+                            </span>
+                            <span class="profile-item-arrow">→</span>
+                        </button>
+
+                        <a class="profile-item" href="#faq" id="btnBantuan">
+                            <span class="profile-item-icon">❓</span>
+                            <span class="profile-item-text">
+                                <strong>Bantuan & FAQ</strong>
+                                <small>Pertanyaan yang sering ditanyakan</small>
+                            </span>
+                            <span class="profile-item-arrow">→</span>
+                        </a>
+                    </div>
+
+                    <div class="profile-footer">
+                        <p>© 2026 ROCÈA Herbal Tea. All rights reserved.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- DETAIL PRODUK MODAL -->
+    <div class="modal" id="detailModal" role="dialog" aria-modal="true" aria-labelledby="detailTitle">
+        <div class="modal-backdrop" data-close-modal></div>
+        <div class="modal-content modal-detail">
+            <button class="modal-close" data-close-modal aria-label="Tutup">✕</button>
+            <div class="detail-layout">
+                <div class="detail-image">
+                    <img id="detailImg" src="" alt="">
+                </div>
+                <div class="detail-info">
+                    <span class="pill soft" id="detailBadge"></span>
+                    <h2 id="detailTitle"></h2>
+                    <p class="detail-price" id="detailPrice"></p>
+                    <div class="detail-meta">
+                        <div><strong>Ukuran</strong><span id="detailUkuran"></span></div>
+                        <div><strong>Kemasan</strong><span id="detailKemasan"></span></div>
+                    </div>
+                    <div class="detail-section">
+                        <strong>Komposisi</strong>
+                        <div class="chip-row" id="detailKomposisi"></div>
+                    </div>
+                    <div class="detail-section">
+                        <strong>Deskripsi</strong>
+                        <p id="detailDeskripsi"></p>
+                    </div>
+                    <div class="detail-qty-row">
+                        <div class="qty-control" data-detail-qty>
+                            <button class="qty-btn" data-action="minus" aria-label="Kurangi">−</button>
+                            <span class="qty-value" id="detailQty">1</span>
+                            <button class="qty-btn" data-action="plus" aria-label="Tambah">+</button>
+                        </div>
+                        <div class="detail-subtotal">
+                            <small>Subtotal</small>
+                            <strong id="detailSubtotal">Rp0</strong>
+                        </div>
+                    </div>
+                    <div class="detail-actions">
+                        <button class="btn btn-primary btn-block" id="btnDetailAdd">Tambah ke Keranjang</button>
+                        <button class="btn btn-fav" id="btnDetailFav" aria-label="Favorit">♡</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- WHATSAPP CS MODAL -->
+    <div class="modal" id="csModal" role="dialog" aria-modal="true" aria-labelledby="csTitle">
+        <div class="modal-backdrop" data-close-modal></div>
+        <div class="modal-content modal-cs">
+            <button class="modal-close" data-close-modal aria-label="Tutup">✕</button>
+            <h3 id="csTitle">Hubungi Customer Service</h3>
+            <p class="cs-sub">Pilih nomor WhatsApp yang ingin dihubungi:</p>
+            <div class="cs-list" id="csList"></div>
+        </div>
+    </div>
+
+    <!-- TOAST -->
+    <div class="toast-container" id="toastContainer" aria-live="polite" aria-atomic="true"></div>
+
+    <script src="./script.js"></script>
+</body>
+</html>
